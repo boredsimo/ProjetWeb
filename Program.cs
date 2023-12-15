@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ProjetWeb.Data;
+using ProjetWeb.Hubs;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ProjetWebContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("ProjetWebContext") ?? throw new InvalidOperationException("Connection string 'ProjetWebContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-
+builder.Services.AddSignalR();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,5 +29,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<VolHub>("/VolHub");
 
 app.Run();

@@ -12,39 +12,39 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" id="id" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Compagnie" class="control-label"></label>
-                <input asp-for="Compagnie" class="form-control" />
+                <input asp-for="Compagnie" id="compagnie" class="form-control" />
                 <span asp-validation-for="Compagnie" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CodeVol" class="control-label"></label>
-                <input asp-for="CodeVol" class="form-control" />
+                <input asp-for="CodeVol" id="codeVol" class="form-control" />
                 <span asp-validation-for="CodeVol" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Ville" class="control-label"></label>
-                <input asp-for="Ville" class="form-control" />
+                <input asp-for="Ville" id="ville" class="form-control" />
                 <span asp-validation-for="Ville" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HeurePrevue" class="control-label"></label>
-                <input asp-for="HeurePrevue" class="form-control" />
+                <input asp-for="HeurePrevue" id="heurePrevue" class="form-control" />
                 <span asp-validation-for="HeurePrevue" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HeureRevisee" class="control-label"></label>
-                <input asp-for="HeureRevisee" class="form-control" />
+                <input asp-for="HeureRevisee" id="heureRevisee" class="form-control" />
                 <span asp-validation-for="HeureRevisee" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Statut" class="control-label"></label>
-                <input asp-for="Statut" class="form-control" />
+                <input asp-for="Statut" itemid="statut" class="form-control" />
                 <span asp-validation-for="Statut" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" id="savebt" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -56,4 +56,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    @* <script src="~/js/Edit.js"></script> *@
 }

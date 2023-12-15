@@ -4,20 +4,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.View;
 using ProjetWeb.Data;
 using ProjetWeb.Models;
+using ProjetWeb.Hubs;
 
 namespace ProjetWeb.Controllers
 {
     public class VolsController : Controller
     {
         private readonly ProjetWebContext _context;
+        private readonly IHubContext<VolHub> _hubContext;
 
-        public VolsController(ProjetWebContext context)
+        public VolsController(ProjetWebContext context, IHubContext<VolHub> hubContext)
         {
             _context = context;
+            _hubContext = hubContext;
         }
 
         // GET: Vols
@@ -34,7 +38,7 @@ namespace ProjetWeb.Controllers
                           //Problem("Entity set 'ProjetWebContext.Vol'  is null.");
         }
 
-        // GET: Vols/Details/5
+        //GET: Vols/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Vol == null)
@@ -58,10 +62,11 @@ namespace ProjetWeb.Controllers
             return View();
         }
 
-        // POST: Vols/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        //POST: Vols/Create
+        //To protect from overposting attacks, enable the specific properties you want to bind to.
+        //For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+       [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Compagnie,CodeVol,Ville,HeurePrevue,HeureRevisee,Statut")] Vol vol)
         {
@@ -69,6 +74,7 @@ namespace ProjetWeb.Controllers
             {
                 _context.Add(vol);
                 await _context.SaveChangesAsync();
+                await _hubContext.Clients.All.SendAsync("VolChange");
                 return RedirectToAction(nameof(Index));
             }
             return View(vol);
@@ -108,6 +114,7 @@ namespace ProjetWeb.Controllers
                 {
                     _context.Update(vol);
                     await _context.SaveChangesAsync();
+                    await _hubContext.Clients.All.SendAsync("VolChange");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -125,7 +132,7 @@ namespace ProjetWeb.Controllers
             return View(vol);
         }
 
-        // GET: Vols/Delete/5
+        //GET: Vols/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Vol == null)
@@ -139,7 +146,7 @@ namespace ProjetWeb.Controllers
             {
                 return NotFound();
             }
-
+            await _hubContext.Clients.All.SendAsync("VolChange");
             return View(vol);
         }
 
@@ -157,14 +164,14 @@ namespace ProjetWeb.Controllers
             {
                 _context.Vol.Remove(vol);
             }
-            
             await _context.SaveChangesAsync();
+            await _hubContext.Clients.All.SendAsync("VolChange");
             return RedirectToAction(nameof(Index));
         }
 
         private bool VolExists(int id)
         {
-          return (_context.Vol?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Vol?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
