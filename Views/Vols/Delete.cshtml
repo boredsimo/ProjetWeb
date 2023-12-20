@@ -1,12 +1,12 @@
 ﻿@model ProjetWeb.Models.Vol
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Supprimer";
 }
 
-<h1>Delete</h1>
+<h1>Supprimer</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Êtes-vous sûr de vouloir supprimer cet élément?</h3>
 <div>
     <h4>Vol</h4>
     <hr />
@@ -51,8 +51,8 @@
     
     <form asp-action="Delete">
         <input id="id" type="hidden" asp-for="Id" />
-        <input id="deletebt" type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input id="deletebt" type="submit" value="Supprimer" class="btn btn-danger" /> |
+        <a asp-action="Index">Revenir à la liste des vols</a>
     </form>
     @section Scripts {
         <script src="~/js/signalr/dist/browser/signalr.js"></script>

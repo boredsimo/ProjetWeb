@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<ProjetWeb.Models.Evenement>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Événements";
 }
 
-<h1>Index</h1>
+<h1>Événements</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Créer un nouvel événement.</a>
 </p>
 <table class="table">
     <thead>
@@ -37,9 +37,9 @@
                 @Html.DisplayFor(modelItem => item.Statut)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EvenementID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EvenementID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EvenementID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.EvenementID">Modifier</a> |
+                <a asp-action="Details" asp-route-id="@item.EvenementID">Détails</a> |
+                <a asp-action="Delete" asp-route-id="@item.EvenementID">Supprimer</a>
             </td>
         </tr>
 }

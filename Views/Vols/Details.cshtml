@@ -1,10 +1,10 @@
 ﻿@model ProjetWeb.Models.Vol
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Détails";
 }
 
-<h1>Details</h1>
+<h1>Détails</h1>
 
 <div>
     <h4>Vol</h4>
@@ -49,20 +49,20 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Modifier</a> |
+    <a asp-action="Index">Revenir à la liste des vols.</a>
 </div>
 
 <br>
 <br>
-<h3>Evenement</h3>
+<h3>Événement</h3>
 <div>
     <a asp-controller="Evenements" asp-action="Create" asp-route-id="@Model?.Id">Créer un nouveau Événement.</a>
 </div>
 <table class="table">
     <thead>
         <tr>
-            <th>IDVol</th>
+            <th>Identifiant Vol</th>
             <th>Heure Révisée</th>
             <th>Statut</th>
             

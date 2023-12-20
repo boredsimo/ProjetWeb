@@ -5,11 +5,12 @@ namespace ProjetWeb.Models;
 
 public class Vol
 {
+    [Display(Name = "Identifiant Vol")]
     [Key]
     public int Id { get; set; }
     
     public string? Compagnie { get; set; }
-    [Display(Name = "Code Vol")]
+    [Display(Name = "Numéro du Vol")]
     public string? CodeVol { get; set; }
 
     public string? Ville { get; set; } 

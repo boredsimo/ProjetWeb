@@ -7,6 +7,7 @@ function getVols() {
         .then(response => response.json())
         .then(data => data.forEach(vol => {
             let template = `<tr>
+                                <td>${vol.id}</td>
                                 <td>${vol.compagnie}</td>
                                 <td>${vol.codeVol}</td>
                                 <td>${vol.ville}</td>
@@ -14,9 +15,9 @@ function getVols() {
                                 <td>${vol.heureRevisee}</td>
                                 <td>${vol.statut}</td>
                                 <td>
-                                    <a href="/Vols/Details/${vol.id}">Details</a> |
-                                    <a href="/Vols/Edit/${vol.id}">Edit</a> |
-                                    <a href="/Vols/Delete/${vol.id}">Delete</a>
+                                    <a href="/Vols/Details/${vol.id}">Détails</a> |
+                                    <a href="/Vols/Edit/${vol.id}">Modifier</a> |
+                                    <a href="/Vols/Delete/${vol.id}">Supprimer</a>
                                 </td>
                              </tr>`;
             $vols.append($(template));

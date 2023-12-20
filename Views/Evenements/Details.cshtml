@@ -1,13 +1,13 @@
 ﻿@model ProjetWeb.Models.Evenement
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Détails";
 }
 
-<h1>Details</h1>
+<h1>Détails</h1>
 
 <div>
-    <h4>Evenement</h4>
+    <h4>Événement</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -31,8 +31,8 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.EvenementID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.EvenementID">Modifier</a> |
+    <a asp-action="Index">Revenir à la liste de événements.</a>
 </div>
 
 
