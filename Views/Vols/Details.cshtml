@@ -53,4 +53,30 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-
+<br>
+<br>
+<h3>Evenement</h3>
+<div>
+    <a asp-controller="Evenements" asp-action="Create" asp-route-id="@Model?.Id">Créer un nouveau Événement.</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>IDVol</th>
+            <th>Heure Révisée</th>
+            <th>Statut</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var but in Model.Evenements)
+        {
+            <tr>
+                <td>@but.IDVol</td>
+                <td>@but.HeureRevisee</td>
+                <td>@but.Statut</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

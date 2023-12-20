@@ -64,6 +64,7 @@ namespace ProjetWeb.Controllers
         // GET: Evenements/Create
         public IActionResult Create()
         {
+            ViewData["IDVol"] = new SelectList(_context.Vol, "Id", "Id");
             return View();
         }
 
@@ -75,11 +76,12 @@ namespace ProjetWeb.Controllers
         public async Task<IActionResult> Create([Bind("EvenementID,IDVol,HeureRevisee,Statut")] Evenement evenement)
         {
             if (ModelState.IsValid)
-            {
+            {  
                 _context.Add(evenement);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IDVol"] = new SelectList(_context.Vol, "Id", "Id");
             return View(evenement);
         }
 

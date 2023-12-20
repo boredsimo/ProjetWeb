@@ -5,7 +5,7 @@ namespace ProjetWeb.Models;
 
 public class Vol
 {
-    
+    [Key]
     public int Id { get; set; }
     
     public string? Compagnie { get; set; }

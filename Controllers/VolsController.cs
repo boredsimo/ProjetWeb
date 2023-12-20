@@ -47,6 +47,7 @@ namespace ProjetWeb.Controllers
             }
 
             var vol = await _context.Vol
+                .Include(e=>e.Evenements)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vol == null)
             {

@@ -11,14 +11,14 @@ using ProjetWeb.Data;
 namespace ProjetWeb.Migrations
 {
     [DbContext(typeof(ProjetWebContext))]
-    [Migration("20231214000330_IntialCreate")]
-    partial class IntialCreate
+    [Migration("20231220020451_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.12");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.14");
 
             modelBuilder.Entity("ProjetWeb.Models.Evenement", b =>
                 {
@@ -36,6 +36,8 @@ namespace ProjetWeb.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("EvenementID");
+
+                    b.HasIndex("IDVol");
 
                     b.ToTable("Evenement");
                 });
@@ -67,6 +69,22 @@ namespace ProjetWeb.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vol");
+                });
+
+            modelBuilder.Entity("ProjetWeb.Models.Evenement", b =>
+                {
+                    b.HasOne("ProjetWeb.Models.Vol", "Vol")
+                        .WithMany("Evenements")
+                        .HasForeignKey("IDVol")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vol");
+                });
+
+            modelBuilder.Entity("ProjetWeb.Models.Vol", b =>
+                {
+                    b.Navigation("Evenements");
                 });
 #pragma warning restore 612, 618
         }
